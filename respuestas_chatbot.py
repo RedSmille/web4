@@ -109,8 +109,14 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "farmacia":
                 return [
-                    '<b>Farmacia <span class="info emoji">💊</span> <span class="info">Planta Baja</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> María Conchita Calderón Romero </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p><b>Farmacia 💊</b>     <b class="color">  Planta Baja</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>María Conchita Calderón Romero</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     '<b>Telefono Principal y Extensiones</b>'
                     '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
@@ -119,72 +125,126 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "alianza_estrategica":
                 return [
-                    '<b>Alianza Estratégica <span class="info emoji">🙏</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargado: <button class="archivo jefe"> L.C.C. Jesús Francisco Herrera Martínez </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Alianza Estratégica 🙏</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>María Conchita Calderón Romero</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7004"><button class="archivo"><b>Alianza Estratégica: </b>7004</button></a>'
                 ]
             elif Intento['tag'] == "almacen_general":
                 return [
-                    '<b>Almacén General y Activos fijos <span class="info emoji">💉</span> <span class="info">Planta Baja</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> C. Olga Lucero Pimental Labrada </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Almacén General y Activos fijos 💉</b>     <b class="color">  Planta baja</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>C. Olga Lucero Pimental Labrada</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7005"><button class="archivo"><b>Almacén General: </b>7005</button></a>'
                 ]
             elif Intento['tag'] == "sub_almacen":
                 return [
-                    '<b>Sub Almacén <span class="info emoji">💉</span> <span class="info">Piso 5</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Sub Almacén 💉</b>     <b class="color">  Piso 5</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7006"><button class="archivo"><b>Sub Almacén: </b>7006</button></a>'
                 ]
             elif Intento['tag'] == "apoyo_nutricional":
                 return [
-                    '<b>Apoyo Nutricional <span class="info emoji">🍎</span> <span class="info">Piso 2</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b class="emoji">Apoyo Nutricional 🍎</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7007"><button class="archivo"><b>Apoyo Nutricional: </b>7007</button></a>'
                 ]
             elif Intento['tag'] == "archivo_clinico":
                 return [
-                    '<b>Archivo Clínico <span class="info emoji">📂</span> <span class="info">Piso 2</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Lic. Dalia Ramírez Morales </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Archivo Clínico 📂</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Lic. Dalia Ramírez Morales</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7008"><button class="archivo"><b>Archivo Clínico: </b>7008</button></a>'
                 ]
             elif Intento['tag'] == "aula_capacitacion":
                 return [
-                    '<b>Aula de Capacitación <span class="info emoji">🧑‍🏫</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Maricruz </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Aula de Capacitación 🧑‍🏫</b>     <b class="color">  Piso</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Maricruz</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7010"><button class="archivo"><b>Aula de Capacitación: </b>7010</button></a>'
                 ]
             elif Intento['tag'] == "biomedica_ingenieria":
                 return [
-                    '<b>Biomédica Ingeniería <span class="info emoji">🔩</span> <span class="info">Piso 1</span></b>'
-                    '\n<b>Encargado: <button class="archivo jefe"> Ing. Sinhue Everardo Acosta Osuna </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Biomédica Ingeniería 🔩</b>     <b class="color">  Piso 1</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Ing. Sinhue Everardo Acosta Osuna</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7011"><button class="archivo"><b>Biomédica Ingeniería: </b>7011</button></a>'
                 ]
             elif Intento['tag'] == "calidad":
                 return [
-                    '<b>Calidad Hospitalaria <span class="info emoji">🏥</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Enf. Fabiola Sánchez Mapula </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Calidad Hospitalaria 🏥</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Enf. Fabiola Sánchez Mapula</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7012"><button class="archivo"><b>Calidad Hospitalaria: </b>7012</button></a>'
                 ]
             elif Intento['tag'] == "cardiologia":
                 return [
-                    '<b>Cardiología <span class="info emoji">🫀</span> <span class="info">Piso 2</span></b>'
-                    '\n<b>Encargado: <button class="archivo jefe"> Dr. José Antonio Quibrera Matienzo </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Cardiología 🫀</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Dr. José Antonio Quibrera Matienzo</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7013"><button class="archivo"><b>Cardiología: </b>7013</button></a>'
@@ -197,32 +257,56 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "central_de_cuentas":
                 return [
-                    '<b>Central de Cuentas <span class="info emoji">📋</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Central de Cuentas 📋</b>     <b class="color">  Piso </b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7014"><button class="archivo"><b>Central de Cuentas: </b>7014</button></a>'
                 ]
             elif Intento['tag'] == "centro_mezclas":
                 return [
-                    '<b>Centro de Mezclas <span class="info emoji">💉</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Centro de Mezclas 💉</b>     <b class="color">  Piso</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado] </p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7015"><button class="archivo"><b>Centro de Mezclas: </b>7015</button></a>'
                 ]
             elif Intento['tag'] == "ceye":
                 return [
-                    '<b>CEYE (Central de Equipos y Esterilización)<span class="info emoji">🥼</span> <span class="info">Piso 5</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Enf. Rosa Esthela Robles Uriarte </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>CEYE (Central de Equipos y Esterilización) 🥼</b>     <b class="color">  Piso 5</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Enf. Rosa Esthela Robles Uriarte</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7016"><button class="archivo"><b>CEYE: </b>7016</button></a>'
                 ]
             elif Intento['tag'] == "cirugia":
                 return [
-                    '<b>Cirugía <span class="info emoji">🩺</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargado: <button class="archivo jefe"> Dr. Juan Manuel Zazueta Tirado </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Cirugía 🩺</b>     <b class="color">  Piso</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Dr. Juan Manuel Zazueta Tirado</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     '<b>Teléfono Principal y Extensiones</b>'
                     '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
@@ -231,32 +315,56 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "clinica_heridas":
                 return [
-                    '<b>Clínica de Heridas <span class="info emoji">🤕</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Enf. María Consuelo Chacón Zapién </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Clínica de Heridas 🤕</b>     <b class="color">  Piso</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Enf. María Consuelo Chacón Zapién</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7019"><button class="archivo"><b>Clinica de Heridas: </b>7019</button></a>'
                 ]
             elif Intento['tag'] == "cobranza":
                 return [
-                    '<b>Cobranza <span class="info emoji">💸</span> <span class="info">Piso </span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Cobranza 💸</b>     <b class="color">  Piso</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7020"><button class="archivo"><b>Cobranza: </b>7020</button></a>'
                 ]
             elif Intento['tag'] == "cocina":
                 return [
-                    '<b>Cocina <span class="info emoji">🍽️</span> <span class="info">Piso 2</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Cocina 🍽️</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7021"><button class="archivo"><b>Cocina: </b>7021</button></a>'
                 ]
             elif Intento['tag'] == "consulta_externa":
                 return [
-                    '<b>Consulta Externa <span class="info emoji">🧑‍⚕️</span> <span class="info piso">Piso 2</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Dra. Aleida López Barajas </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Consulta Externa 🧑‍⚕️</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Dra. Aleida López Barajas</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     '<b>Teléfono Principal y Extensiones</b>'
                     '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
@@ -265,32 +373,56 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "contabilidad_oficina":
                 return [
-                    '<b>Contabilidad <span class="info emoji">💰</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Contabilidad 💰</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7024"><button class="archivo"><b>Contabilidad: </b>7024</button></a>'
                 ]
             elif Intento['tag'] == "dental":
                 return [
-                    '<b>Estomatología y Ortodoncia <span class="info emoji">🦷</span> <span class="info">Piso 2</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> Dra. Raquel Salazar Márquez </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Estomatología y Ortodoncia 🦷</b>     <b class="color">  Piso 2</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>Dra. Raquel Salazar Márquez</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7026"><button class="archivo"><b>Estomatología y Ortodoncia: </b>7026</button></a>'
                 ]
             elif Intento['tag'] == "enfermeria_ensenanza":
                 return [
-                    '<b>Enfermería Enseñanza <span class="info emoji">✏️</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Enfermería Enseñanza ✏️</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7029"><button class="archivo"><b>Enfermería Enseñanza: </b>7029</button></a>'
                 ]
             elif Intento['tag'] == "enfermeria_jefatura":
                 return [
-                    '<b>Enfermería Jefatura <span class="info emoji">👩‍⚕️</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Enfermería Jefatura 👩‍⚕️</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     '<b>Teléfono Principal y Extensiones</b>'
                     '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
@@ -299,24 +431,42 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 ]
             elif Intento['tag'] == "enfermeria_subjefatura":
                 return [
-                    '<b>Enfermería Subjefatura <span class="info emoji">👩‍⚕️</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Enfermería Subjefatura 👩‍⚕️</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7032"><button class="archivo"><b>Enfermería Subjefatura: </b>7032</button></a>'
                 ]
             elif Intento['tag'] == "ensenanza_dos":
                 return [
-                    '<b>Enseñanza Dos <span class="info emoji">📚</span> <span class="info">Piso 6</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>', 
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Enseñanza Dos 📚</b>     <b class="color">  Piso 6</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>', 
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7033"><button class="archivo"><b>Enseñanza Dos: </b>7033</button></a>'
                 ]
             elif Intento['tag'] == "ensenanza_investigacion":
                 return [
-                    '<b>Enseñanza Investigación <span class="info emoji">📖</span> <span class="info">Piso 4</span></b>'
-                    '\n<b>Encargada: <button class="archivo jefe"> [Nombre del Encargado] </b> </button>',
+                    '<section class="card">'
+                        '<header>'
+                            '<p ><b>Enseñanza Investigación 📖</b>     <b class="color">  Piso 4</b></p>'
+                        '</header>'
+                        '<main>'
+                            '<p>[Nombre del Encargado]</p>'
+                        '</main>'
+                    '</section>',
                     Respuesta,
                     TelefonoPrincipal+
                     '<b> </b><a href="tel:6677126606,7034"><button class="archivo"><b>Enseñanza e Investigación: </b>7034</button></a>'
