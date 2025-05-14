@@ -13,6 +13,14 @@ body {
     flex-wrap: wrap;
     gap: 10px;
     margin: 0;
+    margin-bottom: 10px;
+}
+
+.chat-container-header {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    align-items: center;
 }
 
 .chat-input {
@@ -27,7 +35,8 @@ body {
 img {
     max-width: 100%;
     height: auto;
-    border-radius: 8px;
+    border-radius: 4px;
+    border: 3px solid #adadad; 
 }
 
 .container { 
@@ -41,8 +50,11 @@ img {
 }
 
 .container h1 { 
-    padding: 0 10px;
-    margin: 5px 0;
+    padding: 5px;
+    margin: 0px 10px;
+    border: 3px solid #adadad;
+    border-radius: 4px;
+    background-color: white;
 }
 
 .container2 { 
@@ -158,8 +170,13 @@ button:hover {
     color: white; 
 }
 
+.dark-mode h1{ 
+    color: #000000;
+    border: 3px solid #747474;
+}
+
 .dark-mode .container { 
-    background: #444; 
+    background: #444;
 }
 
 .dark-mode .chat-box { 
@@ -181,6 +198,14 @@ button:hover {
     border: 3px solid #888; 
 }
 
+.dark-mode img { 
+    border: 3px solid #747474; 
+}
+
+.dark-mode input{ 
+    border: 3px solid #747474; 
+}
+
 .dark-mode-button { 
     position: absolute; 
     top: 10px; 
@@ -194,7 +219,6 @@ button:hover {
 
 .dark-mode-button:hover { 
     background-color: #3d3d3d; 
-    color: white;
 }
 
 .dark-mode .chat-input {
@@ -222,10 +246,6 @@ button:hover {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap; /* Permite que los elementos se ajusten si no caben */
-}
-
-.header-container img {
-    width: 100px;
 }
 
 .dropdown {
