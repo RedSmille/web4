@@ -3,6 +3,37 @@ import random
 
 # Obtiene la respuesta basada en la intención detectada
 def ObtenerRespuesta(ListaIntentos, JsonIntentos):
+
+    def generar_respuesta_area(nombre_area, emoji, piso, encargado, extensiones):
+
+        pisos = {
+            "0": "Planta Baja",
+            "1": "Piso 1",
+            "2": "Piso 2",
+            "3": "Piso 3",
+            "4": "Piso 4",
+            "5": "Piso 5",
+            "6": "Piso 6",
+            "7": "Edificio Viejo",	
+        }
+
+        piso = pisos.get(piso, piso)
+        
+        card = (
+            f'<section class="card">'
+                f'<header>'
+                    f'<p><b>{nombre_area} <span class="info emoji">{emoji}</span></b> <b><button class="info pisos" onclick="Mostrar(\'{piso}\')">{piso}</button></b> </p>'
+                    f'<p>{encargado}</p>'
+                f'</header>'
+            f'</section>'
+        )
+        
+        botones_ext = ""
+        for descripcion, ext in extensiones:
+            botones_ext += f'<b> </b><a href="tel:6677126606,{ext}"><button class="archivo"><b>{descripcion}: </b>{ext}</button></a>'
+        
+        return [card, Respuesta, TelefonoPrincipal + botones_ext]
+
     if not ListaIntentos or ListaIntentos[0]['Intencion'] == 'unknown':
         return ["Lo siento, no tengo información sobre ese tema. ¿Puedes preguntar algo más relacionado con el hospital?"]
     
@@ -28,7 +59,7 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                 return [
                     Respuesta,
                     '<a href="https://hospitalpediatrico.org/oficial/" target="_blank"><img class="elemento_interno" decoding="async" width="100" src="https://hospitalpediatrico.org/oficial/wp-content/uploads/2022/08/icon-logo-hps.png" alt="Hospital Pediátrico de Sinaloa"></a>'
-                ]
+                ] 
             elif Intento['tag'] == "informacion_general":
                 return [
                     Respuesta,
@@ -105,372 +136,252 @@ def ObtenerRespuesta(ListaIntentos, JsonIntentos):
                     'También puedes preguntar por el área que deseas contactar y te proporcionaremos la <b>extensión específica.</b>',
                     '<b>Teléfono Principal:</b>'
                     '\n<a href="tel:6677126606"><button class="info">667 712 66 06 📞</button></a>',
-                    '<img class="elemento_interno" src="P1.png" alt="Ext. P1">'
-                ]
-            elif Intento['tag'] == "farmacia":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p><b>Farmacia 💊</b>     <b class="color">  Planta Baja</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>María Conchita Calderón Romero</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    '<b>Telefono Principal y Extensiones</b>'
-                    '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
-                    '<b> </b><a href="tel:6677126606,7041"><button class="archivo"><b>Farmacia: </b>7041</button></a>'
-                    '<b> </b><a href="tel:6677126606,7042"><button class="archivo"><b>Farmacia Oficina: </b>7042</button></a>'
-                ]
-            elif Intento['tag'] == "alianza_estrategica":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Alianza Estratégica 🙏</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>María Conchita Calderón Romero</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7004"><button class="archivo"><b>Alianza Estratégica: </b>7004</button></a>'
-                ]
-            elif Intento['tag'] == "almacen_general":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Almacén General y Activos fijos 💉</b>     <b class="color">  Planta baja</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>C. Olga Lucero Pimental Labrada</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7005"><button class="archivo"><b>Almacén General: </b>7005</button></a>'
-                ]
-            elif Intento['tag'] == "sub_almacen":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Sub Almacén 💉</b>     <b class="color">  Piso 5</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7006"><button class="archivo"><b>Sub Almacén: </b>7006</button></a>'
-                ]
-            elif Intento['tag'] == "apoyo_nutricional":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b class="emoji">Apoyo Nutricional 🍎</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7007"><button class="archivo"><b>Apoyo Nutricional: </b>7007</button></a>'
-                ]
-            elif Intento['tag'] == "archivo_clinico":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Archivo Clínico 📂</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Lic. Dalia Ramírez Morales</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7008"><button class="archivo"><b>Archivo Clínico: </b>7008</button></a>'
-                ]
-            elif Intento['tag'] == "aula_capacitacion":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Aula de Capacitación 🧑‍🏫</b>     <b class="color">  Piso</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Maricruz</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7010"><button class="archivo"><b>Aula de Capacitación: </b>7010</button></a>'
-                ]
-            elif Intento['tag'] == "biomedica_ingenieria":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Biomédica Ingeniería 🔩</b>     <b class="color">  Piso 1</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Ing. Sinhue Everardo Acosta Osuna</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7011"><button class="archivo"><b>Biomédica Ingeniería: </b>7011</button></a>'
-                ]
-            elif Intento['tag'] == "calidad":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Calidad Hospitalaria 🏥</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Enf. Fabiola Sánchez Mapula</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7012"><button class="archivo"><b>Calidad Hospitalaria: </b>7012</button></a>'
-                ]
-            elif Intento['tag'] == "cardiologia":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Cardiología 🫀</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Dr. José Antonio Quibrera Matienzo</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7013"><button class="archivo"><b>Cardiología: </b>7013</button></a>'
+                    '<img class="elemento_interno" src="Img/P1.png" alt="Ext. P1">'
                 ]
             elif Intento['tag'] == "mision_vision":   
                 return [
-                    "<b>Mision y Vision</b>\nLa mision y vision del Hospital Pediatrico de Sinaloa reflejan nuestro compromiso con la salud infantil y el desarrollo de la medicina pediatrica en Mexico.",
+                    '<img decoding="async" width="200" class="elemento_interno" src="Img/F4.jpg" alt="">',
                     Respuesta,
                     '<b>Vision:</b> Ser un hospital líder a nivel nacional en atención pediátrica, formación médica e investigación, con personal suficiente y capacitado.'                
                 ]
+            elif Intento['tag'] == "farmacia":
+                return generar_respuesta_area(nombre_area="Farmacia ", emoji="💊", piso="0", encargado="María Conchita Calderón Romero",
+                    extensiones=[("Farmacia", "7041"), ("Farmacia Oficina", "7042")]
+                )
+            elif Intento['tag'] == "alianza_estrategica":
+                return generar_respuesta_area(nombre_area="Alianza Estratégica ", emoji="🙏", piso="6", encargado="María Conchita Calderón Romero",
+                    extensiones=[("Alianza Estratégica", "7004")]
+                )
+            elif Intento['tag'] == "almacen_general":
+                return generar_respuesta_area(nombre_area="Almacén General y Activos fijos ", emoji="💉", piso="0", encargado="C. Olga Lucero Pimental Labrada",
+                    extensiones=[("Almacén General", "7005")]
+                )
+            elif Intento['tag'] == "sub_almacen":
+                return generar_respuesta_area(nombre_area="Sub Almacén ", emoji="💉", piso="5", encargado="[Nombre del Encargado]",
+                    extensiones=[("Sub Almacén", "7006")]
+                )
+            elif Intento['tag'] == "apoyo_nutricional":
+                return generar_respuesta_area(nombre_area="Apoyo Nutricional ", emoji="🍎", piso="2", encargado="[Nombre del Encargado]",
+                    extensiones=[("Apoyo Nutricional", "7007")]
+                )
+            elif Intento['tag'] == "archivo_clinico":
+                return generar_respuesta_area(nombre_area="Archivo Clínico ", emoji="📂", piso="2", encargado="Lic. Dalia Ramírez Morales",
+                    extensiones=[("Archivo Clínico", "7008")]
+                )
+            elif Intento['tag'] == "aula_capacitacion":
+                return generar_respuesta_area(nombre_area="Aula de Capacitación ", emoji="🧑‍🏫", piso="6", encargado="Maricruz",
+                    extensiones=[("Aula de Capacitación", "7010")]
+                )
+            elif Intento['tag'] == "biomedica_ingenieria":
+                return generar_respuesta_area(nombre_area="Biomédica Ingeniería ", emoji="🔩", piso="1", encargado="Ing. Sinhue Everardo Acosta Osuna",
+                    extensiones=[("Biomédica Ingeniería", "7011")]
+                )
+            elif Intento['tag'] == "calidad":
+                return generar_respuesta_area(nombre_area="Calidad Hospitalaria ", emoji="🏥", piso="6", encargado="Enf. Fabiola Sánchez Mapula",
+                    extensiones=[("Calidad Hospitalaria", "7012")]
+                )
+            elif Intento['tag'] == "cardiologia":
+                return generar_respuesta_area(nombre_area="Cardiología ", emoji="🫀", piso="2", encargado="Dr. José Antonio Quibrera Matienzo",
+                    extensiones=[("Cardiología", "7013")]
+                )
             elif Intento['tag'] == "central_de_cuentas":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Central de Cuentas 📋</b>     <b class="color">  Piso </b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7014"><button class="archivo"><b>Central de Cuentas: </b>7014</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Central de Cuentas ", emoji="📋", piso="#", encargado="[Nombre del Encargado]",
+                    extensiones=[("Central de Cuentas", "7014")]
+                )
             elif Intento['tag'] == "centro_mezclas":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Centro de Mezclas 💉</b>     <b class="color">  Piso</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado] </p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7015"><button class="archivo"><b>Centro de Mezclas: </b>7015</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Centro de Mezclas ", emoji="💉", piso="#", encargado="[Nombre del Encargado]",
+                    extensiones=[("Centro de Mezclas", "7015")]
+                )
             elif Intento['tag'] == "ceye":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>CEYE (Central de Equipos y Esterilización) 🥼</b>     <b class="color">  Piso 5</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Enf. Rosa Esthela Robles Uriarte</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7016"><button class="archivo"><b>CEYE: </b>7016</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="CEYE ", emoji="🥼", piso="5", encargado="Enf. Rosa Esthela Robles Uriarte",
+                    extensiones=[("CEYE", "7016")]
+                )
             elif Intento['tag'] == "cirugia":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Cirugía 🩺</b>     <b class="color">  Piso</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Dr. Juan Manuel Zazueta Tirado</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    '<b>Teléfono Principal y Extensiones</b>'
-                    '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
-                    '<b> </b><a href="tel:6677126606,7017"><button class="archivo"><b>Cirugía: </b>7017</button></a>'
-                    '<b> </b><a href="tel:6677126606,7018"><button class="archivo"><b>Cirugía Oficina: </b>7018</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Cirugía ", emoji="🩺", piso="#", encargado="Dr. Juan Manuel Zazueta Tirado",
+                    extensiones=[("Cirugía", "7017"), ("Cirugía Oficina", "7018")]
+                )
             elif Intento['tag'] == "clinica_heridas":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Clínica de Heridas 🤕</b>     <b class="color">  Piso</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Enf. María Consuelo Chacón Zapién</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7019"><button class="archivo"><b>Clinica de Heridas: </b>7019</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Clínica de Heridas ", emoji="🤕", piso="#", encargado="Enf. María Consuelo Chacón Zapién",
+                    extensiones=[("Clínica de Heridas", "7019")]
+                )
             elif Intento['tag'] == "cobranza":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Cobranza 💸</b>     <b class="color">  Piso</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7020"><button class="archivo"><b>Cobranza: </b>7020</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Cobranza ", emoji="💸", piso="#", encargado="[Nombre del Encargado]",
+                    extensiones=[("Cobranza", "7020")]
+                )
             elif Intento['tag'] == "cocina":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Cocina 🍽️</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7021"><button class="archivo"><b>Cocina: </b>7021</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Cocina ", emoji="🍽️", piso="2", encargado="[Nombre del Encargado]",
+                    extensiones=[("Cocina", "7021")]
+                )
             elif Intento['tag'] == "consulta_externa":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Consulta Externa 🧑‍⚕️</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Dra. Aleida López Barajas</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    '<b>Teléfono Principal y Extensiones</b>'
-                    '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
-                    '<b> </b><a href="tel:6677126606,7023"><button class="archivo"><b>Consulta Externa Recepción: </b>7023</button></a>'
-                    '<b> </b><a href="tel:6677126606,7120"><button class="archivo"><b>Consulta Externa Jefe Pediátrico: </b>7120</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Consulta Externa ", emoji="🧑‍⚕️", piso="2", encargado="Dra. Aleida López Barajas",
+                    extensiones=[("Consulta Externa Recepción", "7023"), ("Consulta Externa Jefe Pediátrico", "7120")]
+                )
             elif Intento['tag'] == "contabilidad_oficina":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Contabilidad 💰</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7024"><button class="archivo"><b>Contabilidad: </b>7024</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Contabilidad ", emoji="💰", piso="6", encargado="[Nombre del Encargado]",
+                    extensiones=[("Contabilidad", "7024")]
+                )
             elif Intento['tag'] == "dental":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Estomatología y Ortodoncia 🦷</b>     <b class="color">  Piso 2</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>Dra. Raquel Salazar Márquez</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7026"><button class="archivo"><b>Estomatología y Ortodoncia: </b>7026</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Estomatología y Ortodoncia ", emoji="🦷", piso="2", encargado="Dra. Raquel Salazar Márquez",
+                    extensiones=[("Estomatología y Ortodoncia", "7026")]
+                )
             elif Intento['tag'] == "enfermeria_ensenanza":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Enfermería Enseñanza ✏️</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7029"><button class="archivo"><b>Enfermería Enseñanza: </b>7029</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Enfermería Enseñanza ", emoji="✏️", piso="6", encargado="Enf. Alba Berenice Madueño Madrigal ",
+                    extensiones=[("Enfermería Enseñanza", "7029")]
+                )
             elif Intento['tag'] == "enfermeria_jefatura":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Enfermería Jefatura 👩‍⚕️</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    '<b>Teléfono Principal y Extensiones</b>'
-                    '\n<a href="tel:6677126606"><button class="info">6677126606 📞</button></a>'
-                    '<b> </b><a href="tel:6677126606,7030"><button class="archivo"><b>Enfermería Jefatura: </b>7030</button></a>'
-                    '<b> </b><a href="tel:6677126606,7031"><button class="archivo"><b>Enfermería Jefatura Secretaria: </b>7031</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Enfermería Jefatura ", emoji="👩‍⚕️", piso="6", encargado="[Nombre del Encargado]",
+                    extensiones=[("Enfermería Jefatura", "7030"), ("Enfermería Jefatura Secretaria", "7031")]
+                )
             elif Intento['tag'] == "enfermeria_subjefatura":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Enfermería Subjefatura 👩‍⚕️</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7032"><button class="archivo"><b>Enfermería Subjefatura: </b>7032</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Enfermería Subjefatura ", emoji="👩‍⚕️", piso="6", encargado="[Nombre del Encargado]",
+                    extensiones=[("Enfermería Subjefatura", "7032")]
+                )
             elif Intento['tag'] == "ensenanza_dos":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Enseñanza Dos 📚</b>     <b class="color">  Piso 6</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>', 
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7033"><button class="archivo"><b>Enseñanza Dos: </b>7033</button></a>'
-                ]
-            elif Intento['tag'] == "ensenanza_investigacion":
-                return [
-                    '<section class="card">'
-                        '<header>'
-                            '<p ><b>Enseñanza Investigación 📖</b>     <b class="color">  Piso 4</b></p>'
-                        '</header>'
-                        '<main>'
-                            '<p>[Nombre del Encargado]</p>'
-                        '</main>'
-                    '</section>',
-                    Respuesta,
-                    TelefonoPrincipal+
-                    '<b> </b><a href="tel:6677126606,7034"><button class="archivo"><b>Enseñanza e Investigación: </b>7034</button></a>'
-                ]
+                return generar_respuesta_area(nombre_area="Enseñanza Dos ", emoji="📚", piso="6", encargado="[Nombre del Encargado]",
+                    extensiones=[("Enseñanza e Investigación", "7033")]
+                )
+            elif Intento['tag'] == "ensenanza_investigacion_medica":
+                return generar_respuesta_area(nombre_area="Enseñanza e Investigación Medica ", emoji="📖", piso="4", encargado="Dr. Alberto Paez Salazar ",
+                    extensiones=[("Enseñanza Investigación", "7034"), ("Enseñanza Medica Jefe", "7035"), 
+                                    ("Enseñanza Medica Secretaria", "7036"), ("Enseñanza Medicina Basado en Evidencias", "7037"),]
+                )
+            elif Intento['tag'] == "especialidades_area":
+                return generar_respuesta_area(nombre_area="Especialidades ", emoji="🔍", piso="#", encargado="[Nombre del Encargado]",
+                    extensiones=[("Especialidades", "7038")]
+                )
+            elif Intento['tag'] == "espesialidades_enfermeria":
+                return generar_respuesta_area(nombre_area="Especialidades Enfermeria ", emoji="👩‍⚕️", piso="#", encargado="[Nombre del Encargado]",
+                    extensiones=[("Especialidades Enfermeria", "7039")]
+                )
+            elif Intento['tag'] == "epidemiologia":
+                return generar_respuesta_area(nombre_area="Epidemiologia ", emoji="🦠", piso="2", encargado="Ep. Rosalino Flores Rocha",
+                    extensiones=[("Epidemiologia", "7040")]
+                )
+            elif Intento['tag'] == "gastroenterologia":
+                return generar_respuesta_area(nombre_area="Gastroenterología ", emoji="🥼", piso="2", encargado="Dra. Vianey Paola Zamudio Vázquez",
+                    extensiones=[("Gastroenterología", "7044")]
+                )
+            elif Intento['tag'] == "gastroenterologia_oficina":
+                return generar_respuesta_area(nombre_area="Gastroenterología Oficina ", emoji="🗄️", piso="2", encargado="Dra. Vianey Paola Zamudio Vázquez",
+                    extensiones=[("Gastroenterología Oficina", "7044")]
+                )
+            elif Intento['tag'] == "quirofano_endoscopia":
+                return generar_respuesta_area(nombre_area="Quirófano de endoscopia ", emoji="🩺", piso="3", encargado="Enf. Ángelica Vega Millán",
+                    extensiones=[("Quirófano de endoscopia", "7043")]
+                )
+            elif Intento['tag'] == "genetica":
+                return generar_respuesta_area(nombre_area="Genetica ", emoji="🧬", piso="1", encargado="Dr. Jesús Ernesto Dueñas Arias",
+                    extensiones=[("Genetica", "7045")]
+                )
+            elif Intento['tag'] == "infectologia":
+                return generar_respuesta_area(nombre_area="Infectología ", emoji="🦠", piso="5", encargado="Dr. Carlos Alberto Velázquez Ríos<br>Enf. Nancy Rebeca Díaz Beltrán ",
+                    extensiones=[("Infectología Oficina", "7046"), ("Infectología Sala", "7047")]
+                )
+            elif Intento['tag'] == "informatica":
+                return generar_respuesta_area(nombre_area="Informática ", emoji="💻", piso="6", encargado="Lic. Jorge Antonio Cruz Sainz",
+                    extensiones=[("Informática", "7048")]
+                )
+            elif Intento['tag'] == "informes_recepcion":
+                return generar_respuesta_area(nombre_area="Informes Recepción ", emoji="☎️", piso="0", encargado="",
+                    extensiones=[("Informes Recepción", "7049")]
+                )
+            elif Intento['tag'] == "inhaloterapia":
+                return generar_respuesta_area(nombre_area="Inhaloterapia ", emoji="👃", piso="0", encargado="Enf. Ana Guadalupe Cruz Castillo ",
+                    extensiones=[("Inhaloterapia", "7050")]
+                )
+            elif Intento['tag'] == "terapia_respiratoria":
+                return generar_respuesta_area(nombre_area="Terapia Respiratoria (Inhaloterapia) ", emoji="👃", piso="0", encargado="Dra. Ana María López Reyes",
+                    extensiones=[("Inhaloterapia", "7050")]
+                )
+            elif Intento['tag'] == "juridico":
+                return generar_respuesta_area(nombre_area="Juridico ", emoji="🏛️", piso="6", encargado="Elizabeth Gomez Olivarez",
+                    extensiones=[("Juridico", "7051")]
+                )
+            elif Intento['tag'] == "laboratorio":
+                return generar_respuesta_area(nombre_area="Laboratorio ", emoji="🔬", piso="1", encargado="QFB. Maria Leticia Félix Miranda",
+                    extensiones=[("Laboratorio Recepción C.E.", "7052"), ("Laboratorio Filtro HOSP", "7030"), ("Laboratorio Jefe", "7031")]
+                )
+            elif Intento['tag'] == "mantenimiento":
+                return generar_respuesta_area(nombre_area="Mantenimiento ", emoji="🛠️", piso="1", encargado="MII. Samuel Oswaldo Loya Acosta",
+                    extensiones=[("Mantenimiento Oficina", "7053"), ("Mantenimiento", "7054")]
+                )
+            elif Intento['tag'] == "medicina_interna":
+                return generar_respuesta_area(nombre_area="Medicina Interna ", emoji="⚕️", piso="5", encargado="Enf. María del Rosario Chamorro Chairez",
+                    extensiones=[("Medicina Interna", "7055")]
+                )
+            elif Intento['tag'] == "medicina_legal":
+                return generar_respuesta_area(nombre_area="Medicina Legal ", emoji="⚖️", piso="6", encargado="Dra. Ana Luisa Castro Medina",
+                    extensiones=[("Medicina Legal", "7056")]
+                )
+            elif Intento['tag'] == "medicina_preventiva":
+                return generar_respuesta_area(nombre_area="Medicina Preventiva ", emoji="🩺", piso="#", encargado="Enf. Silvia Viridiana Angulo Leyva",
+                    extensiones=[("Medicina Preventiva", "7057")]
+                )
+            elif Intento['tag'] == "medicina_transfusional":
+                return generar_respuesta_area(nombre_area="Medicina Transfusional ", emoji="🩸", piso="#", encargado="Enf. Favela Bernal Jessica Lizbeth",
+                    extensiones=[("Medicina Transfusional", "7058")]
+                )
+            elif Intento['tag'] == "modulo_informacion":
+                return generar_respuesta_area(nombre_area="Modulo de Información ", emoji="📒", piso="0", encargado="",
+                    extensiones=[("Modulo de Información", "7059")]
+                )
+            elif Intento['tag'] == "neonatologia":
+                return generar_respuesta_area(nombre_area="Neonatología ", emoji="👶", piso="5", encargado="Dra. Aleyda Zazueta Chávez<br>Enf. Sandra Elena Benítez López",
+                    extensiones=[("Neonatología Infecto", "7060"), ("Neonatología Oficina", "7061"), ("Neonatología Sala", "7062")]
+                )
+            elif Intento['tag'] == "oncologia_edificio_viejo":
+                return generar_respuesta_area(nombre_area="Oncología ", emoji="🏥", piso="7", encargado="Dra. Obdilia Gutiérrez Guzmán",
+                    extensiones=[("Oncología Angelita", "7064"), ("Oncología Banco de Sangre", "7065"), ("Oncología Catéteres", "7066"),
+                                    ("Oncología Jefatura", "7067"), ("Oncología Jefe", "7068"), ("Oncología Oficina Hematología", "7070"),
+                                    ("Oncología Oficina Secretaría", "7071"), ("Oncología Quimioterapia Ambulatoria", "7072"), ("Oncología Recepción Consulta", "7073"),
+                                    ("Oncología Residentes", "7074"), ("Oncología TS Hospitalización", "7076"), ("Oncología Somatometría", "7118"),
+                                    ("Oncología Tumores", "7119"), ("Oncología Sala", "7122"), ("Nutrición Onco Pediátrico", "7125")
+                    ]
+                )
+            elif Intento['tag'] == "anatomia_patologica":
+                return generar_respuesta_area(nombre_area="Patológia ", emoji="🧬", piso="3", encargado="Pat. Eri Peña Martínez",
+                    extensiones=[("Patológia", "7077")]
+                )
+            elif Intento['tag'] == "quirofano_1_2":
+                return generar_respuesta_area(nombre_area="Quirófano ", emoji="🔪", piso="#", encargado="Dr. Jesús Oscar Soto Quintero",
+                    extensiones=[("Quirófano 1 y 2", "7078")]
+                )
+            elif Intento['tag'] == "rayos_x":
+                return generar_respuesta_area(nombre_area="Rayos X ", emoji="💀", piso="1", encargado="Dr. José Manuel López López",
+                    extensiones=[("Rayos X Placas", "7080"), ("Rayos X Oficina Mayte", "7081"), ("Recepción Rayos X", "7115"),
+                                    ("Ultrasonido Rayos X", "7116"), ("Rayos X TAC", "7117")]
+                )
+            elif Intento['tag'] == "recursos_financieros":
+                return generar_respuesta_area(nombre_area="Recursos Financieros ", emoji="💵", piso="6", encargado="Lic. Marlenne Karime Osuna Bolado",
+                    extensiones=[("Recursos Financieros", "7082")]
+                )
+            elif Intento['tag'] == "recursos_humanos":
+                return generar_respuesta_area(nombre_area="Recursos Humanos ", emoji="👨‍⚕️", piso="6", encargado="Lic. Hermelinda Avendaño Gutiérrez",
+                    extensiones=[("Recursos Humanos", "7083"), ("Recursos Humanos Jefe", "7084"), ("Recursos Humanos Contrato", "7103")]
+                )
+            elif Intento['tag'] == "seguro_popular":
+                return generar_respuesta_area(nombre_area="Seguro Popular ", emoji="🧑‍⚕️", piso="#", encargado="Lic. María de los Ángeles López López",
+                    extensiones=[("Seguro Popular Medico", "7085"), ("Seguro Popular Oficina", "7086")]
+                )
+            elif Intento['tag'] == "servicios_generales":
+                return generar_respuesta_area(nombre_area="Servicios Generales ", emoji="🧹", piso="0", encargado="Ing. Jose Luis Ochoa Arellano",
+                    extensiones=[("Servicios Generales", "7087")]
+                )
+            elif Intento['tag'] == "subdireccion_planeacion":
+                return generar_respuesta_area(nombre_area="Subdirección de Planeación ", emoji="📋", piso="#", encargado="M. Iván Rafael Mendoza Zuñiga",
+                    extensiones=[("Subdirección de Planeación", "7088")]
+                )
+            elif Intento['tag'] == "subdireccion_servicios_auxiliares":
+                return generar_respuesta_area(nombre_area="Subdirección Servicios Auxiliares ", emoji="🖼️", piso="#", encargado=" Dra. Cynthia Gabriela  Torres Galicia",
+                    extensiones=[("Subdirección Servicios Auxiliares", "7089")]
+                )
+            elif Intento['tag'] == "subdireccion_medica":
+                return generar_respuesta_area(nombre_area="Subdirección Medica ", emoji="🥼", piso="6", encargado="Dr. Fernando de Jesús  Bodart Román<br>Dra. Laura Elena Salazar Castro",
+                    extensiones=[("Subdirección Medica", "7090")]
+                )
+            elif Intento['tag'] == "subdireccion_secretaria":
+                return generar_respuesta_area(nombre_area="Subdirección Secretaria ", emoji="✒️", piso="6", encargado="",
+                    extensiones=[("Subdirección Secretaria", "7091")]
+                )
             return [Respuesta]
-    
     return ["Lo siento, no entendí tu pregunta."]
